@@ -8,13 +8,13 @@ def password(request):
 
     lenght = int(request.GET.get('length'))
 
-    if request.GET.get('uppercase'):
-        characters.extend(list('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
     if request.GET.get('special'):
         characters.extend(list('-_+*#!$%&.='))
     if request.GET.get('numbers'):
         characters.extend(list('123467890'))    
-
+    if request.GET.get('uppercase'):
+        characters.extend(list('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+    
     for x in range(lenght):
         
         generated_password += random.choice(characters)
@@ -27,4 +27,7 @@ def home(request):
 
 def about(request):
     return render(request, 'generator/about.html')
+
+def recommendations(request):
+    return render(request, 'generator/recommendations.html')
 
