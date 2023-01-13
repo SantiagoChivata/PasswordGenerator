@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import random
-
+from werkzeug.security import generate_password_hash
 def password(request):
 
     characters = list('abcdefghijklmnopqrstuvwxyz')
@@ -18,10 +18,11 @@ def password(request):
     for x in range(lenght):
         
         generated_password += random.choice(characters)
-        #print(generated_password)
+        
+    password_encrypted = generate_password_hash(generated_password)
+    #print(generated_password + password_encrypted)
+    return render(request, 'generator/password.html', {'password': generated_password,'passwordsha256': password_encrypted})
 
-    return render(request, 'generator/password.html', {'password': generated_password})
-    
 def home(request):
     return render(request, 'generator/home.html')
 

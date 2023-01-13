@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from PasswordGenerator.settings.base import *
 from PasswordGenerator.logging import *
 
-load_dotenv(Path.joinpath(BASE_DIR,'.env'))
+load_dotenv(Path.joinpath(BASE_DIR,'.env-prd'))
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 

@@ -13,10 +13,22 @@ services:
   postgres:
     image: postgres:15.1-alpine
     ports:
-      - 5431:5432
-    volumes:
-      - ./database:/var/lib/postgresql/data
+      - 5432:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=passwordgenerator-dev
+    volumes:
+      - postgres-data:/database:/var/lib/postgresql/data
+      
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=sac.94@hotmail.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+
+volumes:
+  postgres-data:
